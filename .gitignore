@@ -2,3 +2,8 @@
 /_qb/
 /google_php_client_library/vendor/
 /myphpadmin/
+/videos/
+branch_structure.json
+temp_auto_push.bat
+temp_interactive_push.bat
+.gitignore
