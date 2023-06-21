@@ -1,0 +1,479 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bootstrap demo</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <script src="index.js"></script> 
+    <link rel="stylesheet" href="index.css">
+    
+</head>
+  <body>
+    
+
+    <div id="container" class="container text-center mt-5">
+      <div id="initial-container">
+
+          <div class="form-group ">
+              <label class="main-title" for="number-input">Where Is Your Property Located?</label><br>
+              <label class="zip-code">Enter 5 digit zip code</label><br>
+              <input type="number" class=" mt-3 main-input" id="number-input" required>
+            </div>
+            <button type="button" id="continue-button" class="mt-3 btn btn-primary main-btn">Continue</button>
+
+        </div>
+    </div>
+
+
+    <script>
+
+$(document).ready(function () {
+    $("#continue-button").click(function () {
+      $("#initial-container").hide();
+  
+      // $("body").append(
+      //   "<div class='container mt-5 text-center' id='loading-container'><i class='fas fa-spinner fa-spin'></i></div>"
+      // );
+      // setTimeout(function () {
+        // $("#loading-container").hide();
+        $("body").append(
+          "<div class='container mt-5 text-center' id='yesno-container'>"+
+            "<h1 class='property-title'>Do You Own Your Property?</h1>"+
+            "<div class='sel'>(Select One)</div>"+
+            "<div class='row d-flex justify-content-center mt-5'>"+
+            "<div class='col-sm-6 card-width'>"+
+              "<input type='radio' name='yes1' id='yes-box'>"+
+              "<label class='yes p-5 card1' for='yes-box'><i class='fa-solid fa-check'></i><br>Yes</label>"+
+            "</div>"+
+            "<div class='col-sm-6 card-width'>"+
+              "<input type='radio' name='yes1' id='no-box'>"+
+              "<label class='yes p-5 card1' for='no-box'><i class='fa-solid fa-xmark'></i><br>No</label>"+
+              "</div>"+
+              "</div>"+
+              "<div class='row d-flex justify-content-center mt-5'>"+
+              "<div class='col-sm-6 mx-3 btn-line'>"+
+               " <button id='continue-button2' class='btn main-btn'>Continue</button>"+
+                "</div>"+
+                "<div class='col-sm-6 mx-3 btn-line'>"+
+                "<button id='back-button2' class='btn btn-back'>Back</button>"+
+                "</div>"+
+              "</div>"+
+              "</div>"
+        );
+
+        // section one 
+        $("#continue-button2").click(function () {
+          if ($("#yes-box").is(":checked")) {
+            $("#yesno-container").hide();
+            $("body").append(
+              "<div id='property-container' class='container text-center mt-5'> "+     
+                "<h1 class='property2-title'>What Types of Property Do You Own?</h1>"+
+                "<div class='row d-flex justify-content-center  mt-5'>"+
+                "  <div class='col-sm-4 card-inline1'>"+
+                    "<input type='radio' name='yes2' id='single-box'>"+
+                    "<label class='single  card2 p-4' for='single-box'><i class='fa-regular fa-house-building'></i><br>Single-family</label>"+
+                    "</div>"+
+                    "<div class='col-sm-4 card-inline2'>"+
+                      "<input type='radio' name='yes2' id='town-box'>"+
+                     " <label class='town  card2 p-4' for='town-box'><i class='fa-solid fa-buildings'></i><br>TownHouse</label>"+
+                      "</div>"+
+                      "<div class='col-sm-4 card-inline3'>"+
+                      "  <input type='radio' name='yes2' id='manufactured-box'>"+
+                      "  <label class='manfu  card2 p-4' for='manufactured-box'><i class='fa-solid fa-buildings'></i><br>Manufactured</label>"+
+                      "  </div>"+
+                      "  </div>"+
+                      "  <div class='row d-flex justify-content-center mt-5'>"+
+                      "    <div class='col-sm-6 mx-3 btn-line'>"+
+                      "    <button id='continue-button3' class='btn main-btn'>Continue</button>"+
+                      "    </div>"+
+                      "    <div class='col-sm-6 mx-3 btn-line'>"+
+                      "      <button id='no-button' class='btn btn-back'>Back</button>"+
+                      "      </div>"+
+                      "      </div>"+
+                      "      </div>"
+            );
+            
+            // section two 
+            $("#continue-button3").click(function () {
+                if ($("#single-box").is(":checked")) {
+                    $("#property-container").hide();
+                    $("body").append(
+                     " <div id='lease-container' class='container text-center mt-5'> " +
+                     "  <h1 class='purchase-title'> Are You Interested In Leasing or Purchasing Your Solar System?</h1>" +
+                     "  <div class='row d-flex justify-content-center  mt-5'>" +
+                     " <div class='col-sm-4 card-inline4'>" +
+                     "   <input type='radio' name='yes3' id='condo-box'>" +
+                     "   <label class='lease  card3 mx-3 p-5' for='condo-box'>Lease/PPA<p class='bills-para'>Save 20-30% on Utility Bills</p></label>" +
+                     "   </div>" +
+                     "   <div class='col-sm-4 card-inline5'>" +
+                     "     <input type='radio' name='yes3' id='apartment-box'>" +
+                     "     <label class='lease card3 mx-3 p-5' for='apartment-box'>Purchase<p class='bills-para'>Long-Term ROI</p></label>" +
+                     "     </div>" +
+                     "     <div class='col-sm-4 card-inline6'>" +
+                     "       <input type='radio' name='yes3' id='coop-box'>" +
+                     "       <label class='lease2 card3 mx-3 p-5' for='coop-box'>I'm Not Sure<p class='bills-para2'>I'd Like Help Deciding</p></label>" +
+                     "       </div>" +
+                     "       </div>" +
+                     "       <div class='row d-flex justify-content-center mt-5'>" +
+                     "       <div class='col-sm-6 mx-3 btn-line'>" +
+                     "         <button id='continue-button4' class='btn main-btn'>Continue</button>" +
+                     "         </div>" +
+                     "         <div class='col-sm-6 mx-3 btn-line'>" +
+                     "         <button id='back-button3' class='btn btn-back'>Back</button>" +
+                     "         </div>" +
+                     "         </div>" +
+                     "         </div>"
+                    );
+                }
+            
+             else if ($("#town-box").is(":checked")) {
+                    $("#property-container").hide();
+                    $("body").append(
+                     " <div id='lease-container' class='container text-center mt-5'> " +
+                     "  <h1 class='purchase-title'> Are You Interested In Leasing or Purchasing Your Solar System?</h1>" +
+                     "  <div class='row d-flex justify-content-center  mt-5'>" +
+                     " <div class='col-sm-4 card-inline4'>" +
+                     "   <input type='radio' name='yes3' id='condo-box'>" +
+                     "   <label class='lease  card3 mx-3 p-5' for='condo-box'>Lease/PPA<p class='bills-para'>Save 20-30% on Utility Bills</p></label>" +
+                     "   </div>" +
+                     "   <div class='col-sm-4 card-inline5'>" +
+                     "     <input type='radio' name='yes3' id='apartment-box'>" +
+                     "     <label class='lease card3 mx-3 p-5' for='apartment-box'>Purchase<p class='bills-para'>Long-Term ROI</p></label>" +
+                     "     </div>" +
+                     "     <div class='col-sm-4 card-inline6'>" +
+                     "       <input type='radio' name='yes3' id='coop-box'>" +
+                     "       <label class='lease2 card3 mx-3 p-5' for='coop-box'>I'm Not Sure<p class='bills-para2'>I'd Like Help Deciding</p></label>" +
+                     "       </div>" +
+                     "       </div>" +
+                     "       <div class='row d-flex justify-content-center mt-5'>" +
+                     "       <div class='col-sm-6 mx-3 btn-line'>" +
+                     "         <button id='continue-button4' class='btn main-btn'>Continue</button>" +
+                     "         </div>" +
+                     "         <div class='col-sm-6 mx-3 btn-line'>" +
+                     "         <button id='back-button3' class='btn btn-back'>Back</button>" +
+                     "         </div>" +
+                     "         </div>" +
+                     "         </div>"
+                    );
+                }
+            
+               else if ($("#manufactured-box").is(":checked")) {
+                    $("#property-container").hide();
+                    $("body").append(
+                     " <div id='lease-container' class='container text-center mt-5'> " +
+                     "  <h1 class='purchase-title'> Are You Interested In Leasing or Purchasing Your Solar System?</h1>" +
+                     "  <div class='row d-flex justify-content-center  mt-5'>" +
+                     " <div class='col-sm-4 card-inline4'>" +
+                     "   <input type='radio' name='yes3' id='condo-box'>" +
+                     "   <label class='lease  card3 mx-3 p-5' for='condo-box'>Lease/PPA<p class='bills-para'>Save 20-30% on Utility Bills</p></label>" +
+                     "   </div>" +
+                     "   <div class='col-sm-4 card-inline5'>" +
+                     "     <input type='radio' name='yes3' id='apartment-box'>" +
+                     "     <label class='lease card3 mx-3 p-5' for='apartment-box'>Purchase<p class='bills-para'>Long-Term ROI</p></label>" +
+                     "     </div>" +
+                     "     <div class='col-sm-4 card-inline6'>" +
+                     "       <input type='radio' name='yes3' id='coop-box'>" +
+                     "       <label class='lease2 card3 mx-3 p-5' for='coop-box'>I'm Not Sure<p class='bills-para2'>I'd Like Help Deciding</p></label>" +
+                     "       </div>" +
+                     "       </div>" +
+                     "       <div class='row d-flex justify-content-center mt-5'>" +
+                     "       <div class='col-sm-6 mx-3 btn-line'>" +
+                     "         <button id='continue-button4' class='btn main-btn'>Continue</button>" +
+                     "         </div>" +
+                     "         <div class='col-sm-6 mx-3 btn-line'>" +
+                     "         <button id='back-button3' class='btn btn-back'>Back</button>" +
+                     "         </div>" +
+                     "         </div>" +
+                     "         </div>"
+                    );
+                }
+                else {
+                    alert('Please select al least one value');
+                }
+
+                //  section three 
+                $("#continue-button4").click(function () {
+                  if ($("#condo-box").is(":checked")) {
+                    $("#lease-container").hide();
+                    $("body").append(
+                  "  <div class='container mt-5 text-center' id='condo-container'>"+
+                  "  <h1 class='battery-title'>Would You Like A Battery Backup With Your Installation?</h1>"+
+                  "  <div class='row d-flex justify-content-center mt-5'>"+
+                  "  <div class='col-sm-6 card-width'>"+
+                  "  <input type='radio' name='yes4' id='yes4-box'>"+
+                  "  <label class='yes p-5 card2 mx-3' for='yes4-box'><i class='fa-solid fa-check'></i><br>Yes</label>"+
+                  "  </div>"+
+                  "  <div class='col-sm-6 card-width'>"+
+                  "  <input type='radio' name='yes4' id='no-box'>"+
+                  "  <label class='yes p-5 card2 mx-3' for='no-box'><i class='fa-solid fa-xmark'></i><br>No</label>"+
+                  "  </div>"+
+                  "  </div>"+
+                  "  <div class='row d-flex justify-content-center mt-5'>"+
+                  "  <div class='col-sm-6 mx-3 btn-line'>"+
+                  "  <button id='continue-button5' class='btn main-btn'>Continue</button>"+
+                  "  </div>"+
+                  "  <div class='col-sm-6 mx-3 btn-line'>"+
+                  "  <button id='back-button4' class='btn btn-back'>Back</button>"+
+                  "  </div>"+
+                  "  </div>"+
+                  "  </div>"
+                    );
+                  }
+
+                  // section four 
+                  $("#continue-button5").click(function () {
+                    if ($("#yes4-box").is(":checked")) {
+                     $("#condo-container").hide();
+                      $("body").append(
+                      " <div class='container mt-5 text-center' id='roof-container'>"+
+                      "  <h1 class='battery-title'>How Old Is Your Roof?</h1>"+
+                      "  <div class='row d-flex justify-content-center mt-5'>"+
+                      "  <div class='col-sm-4 card-width2'>"+
+                      "  <input type='radio' name='yes5' id='yes5-box'>"+
+                      "  <label class='p-5 card4 mx-3 years-title text-primary' for='yes5-box'> < 10 Years</label>"+
+                      "  </div>"+
+                      "  <div class='col-sm-4 card-width2'>"+
+                      "  <input type='radio' name='yes5' id='year10-box'>"+
+                      "  <label class='p-5 card4 mx-3 years-title' for='year10-box'> 10-15 Years</label>"+
+                      "  </div>"+
+                      "  <div class='col-sm-4 card-width2'>"+
+                      "  <input type='radio' name='yes5' id='year15-box'>"+
+                      "  <label class='p-5 card4 mx-3 years-title' for='year15-box'> 15+ Years</label>"+
+                      "  </div>"+
+                      "  <div class='col-sm-4 card-width2'>"+
+                      "  <input type='radio' name='yes5' id='dnt-box'>"+
+                      "  <label class='p-5 card4 mx-3 years-title' for='dnt-box'>I don't know</label>"+
+                      "  </div>"+
+                      "  </div>"+
+                      "  <div class='row d-flex justify-content-center mt-5'>"+
+                      "  <div class='col-sm-6 mx-3 btn-line'>"+
+                      "  <button id='continue-button6' class='btn main-btn'>Continue</button>"+
+                      "  </div>"+
+                      "  <div class='col-sm-6 mx-3 btn-line'>"+
+                      "  <button id='back-button5' class='btn btn-back'>Back</button>"+
+                      "  </div>"+
+                      "  </div>"+
+                      "  </div>"
+                          );
+                      }
+
+                  // Form section 
+                  $("#continue-button6").click(function () {
+                    if ($("#yes5-box").is(":checked")) {
+                      $("#roof-container").hide();
+                       $("body").append(
+                         "<h1 class='text-center property-title'>How Can We Reach You?</h1>"+
+                        "<form>" +
+                         "<div class='container mt-4'>" +
+                         "<div class='row d-flex justify-content-center g-3'>" +
+                        "<div class='col-md-6 pl'> " +
+                          "<label for='firstName' class='form-label fname'>First Name</label>" +
+                          "<input type='text' class='form-control input-width' id='firstName' required>" +
+                        "</div>"+
+                        "<div class='col-md-6 pl2'>"+
+                          "<label for='lastName' class='form-label lname'>Last Name</label>"+
+                          "<input type='text' class='form-control input-width2' id='lastName' required>"+
+                       "</div>" +
+
+                       "</div>" +
+                       "<div class='row justify-content-center mt-2 text-center g-3'>" +
+                       "<div class='col-md-6'> " +
+                         "<label for='email' class='form-label email'>Email</label>" +
+                         "<input type='email' class='form-control email-width' id='email' required>" +
+                       "</div>"+
+                      "</div>" +
+                      "<div class='row justify-content-center mt-2 text-center g-3'>" +
+                      "<div class='col-md-6'> " +
+                        "<label for='phone' class='form-label num'>Phone number</label>" +
+                        "<input type='number' class='form-control email-width' id='phone' required>" +
+                      "</div>"+
+                      "<p class='privacy-para'>Your privacy is important to us. Your information will not be shared with<br> outside parties. By clicking this button, you consent to be contacted by<br> Solar Energy World, LLC."+
+                     "</div>" +
+                     "<div class='row d-flex justify-content-center mt-3'>" +
+                     "<div class='col-sm-6 mx-3 btn-line'> " +
+                      "<button type='submit' class='btn main-btn' id='submit-btn'>Submit</button>" +
+                     "</div>" +
+                     "<div class='col-sm-6 mx-3 btn-line'> " +
+                      "<button class='btn btn-back' id='back-btn'>back</button>" +
+                     "</div>" +
+                     "</div>" +
+
+                        "</form>"
+                      );
+                    }
+                    if ($("#year10-box").is(":checked")) {
+                      $("#roof-container").hide();
+                      $("body").append(
+                         "<h1 class='text-center property-title'>How Can We Reach You?</h1>"+
+                        "<form>" +
+                         "<div class='container mt-4'>" +
+                         "<div class='row d-flex justify-content-center g-3'>" +
+                        "<div class='col-md-6 pl'> " +
+                          "<label for='firstName' class='form-label fname'>First Name</label>" +
+                          "<input type='text' class='form-control input-width' id='firstName' required>" +
+                        "</div>"+
+                        "<div class='col-md-6 pl2'>"+
+                          "<label for='lastName' class='form-label lname'>Last Name</label>"+
+                          "<input type='text' class='form-control input-width2' id='lastName' required>"+
+                       "</div>" +
+
+                       "</div>" +
+                       "<div class='row justify-content-center mt-2 text-center g-3'>" +
+                       "<div class='col-md-6'> " +
+                         "<label for='email' class='form-label email'>Email</label>" +
+                         "<input type='email' class='form-control email-width' id='email' required>" +
+                       "</div>"+
+                      "</div>" +
+                      "<div class='row justify-content-center mt-2 text-center g-3'>" +
+                      "<div class='col-md-6'> " +
+                        "<label for='phone' class='form-label num'>Phone number</label>" +
+                        "<input type='number' class='form-control email-width' id='phone' required>" +
+                      "</div>"+
+                      "<p class='privacy-para'>Your privacy is important to us. Your information will not be shared with<br> outside parties. By clicking this button, you consent to be contacted by<br> Solar Energy World, LLC."+
+                     "</div>" +
+                     "<div class='row d-flex justify-content-center mt-3'>" +
+                     "<div class='col-sm-6 mx-3 btn-line'> " +
+                      "<button type='submit' class='btn main-btn' id='submit-btn'>Submit</button>" +
+                     "</div>" +
+                     "<div class='col-sm-6 mx-3 btn-line'> " +
+                      "<button class='btn btn-back' id='back-btn'>back</button>" +
+                     "</div>" +
+                     "</div>" +
+
+                        "</form>"
+                      );
+                    }
+                    if ($("#year15-box").is(":checked")) {
+                      $("#roof-container").hide();
+                      $("body").append(
+                         "<h1 class='text-center property-title'>How Can We Reach You?</h1>"+
+                        "<form>" +
+                         "<div class='container mt-4'>" +
+                         "<div class='row d-flex justify-content-center g-3'>" +
+                        "<div class='col-md-6 pl'> " +
+                          "<label for='firstName' class='form-label fname'>First Name</label>" +
+                          "<input type='text' class='form-control input-width' id='firstName' required>" +
+                        "</div>"+
+                        "<div class='col-md-6 pl2'>"+
+                          "<label for='lastName' class='form-label lname'>Last Name</label>"+
+                          "<input type='text' class='form-control input-width2' id='lastName' required>"+
+                       "</div>" +
+
+                       "</div>" +
+                       "<div class='row justify-content-center mt-2 text-center g-3'>" +
+                       "<div class='col-md-6'> " +
+                         "<label for='email' class='form-label email'>Email</label>" +
+                         "<input type='email' class='form-control email-width' id='email' required>" +
+                       "</div>"+
+                      "</div>" +
+                      "<div class='row justify-content-center mt-2 text-center g-3'>" +
+                      "<div class='col-md-6'> " +
+                        "<label for='phone' class='form-label num'>Phone number</label>" +
+                        "<input type='number' class='form-control email-width' id='phone' required>" +
+                      "</div>"+
+                      "<p class='privacy-para'>Your privacy is important to us. Your information will not be shared with<br> outside parties. By clicking this button, you consent to be contacted by<br> Solar Energy World, LLC."+
+                     "</div>" +
+                     "<div class='row d-flex justify-content-center mt-3'>" +
+                     "<div class='col-sm-6 mx-3 btn-line'> " +
+                      "<button type='submit' class='btn main-btn' id='submit-btn'>Submit</button>" +
+                     "</div>" +
+                     "<div class='col-sm-6 mx-3 btn-line'> " +
+                      "<button class='btn btn-back' id='back-btn'>back</button>" +
+                     "</div>" +
+                     "</div>" +
+
+                        "</form>"
+                      );
+                    }
+                    if ($("#dnt-box").is(":checked")) {
+                      $("#roof-container").hide();
+                      $("body").append(
+                         "<h1 class='text-center property-title'>How Can We Reach You?</h1>"+
+                        "<form>" +
+                         "<div class='container mt-4'>" +
+                         "<div class='row d-flex justify-content-center g-3'>" +
+                        "<div class='col-md-6 pl'> " +
+                          "<label for='firstName' class='form-label fname'>First Name</label>" +
+                          "<input type='text' class='form-control input-width' id='firstName' required>" +
+                        "</div>"+
+                        "<div class='col-md-6 pl2'>"+
+                          "<label for='lastName' class='form-label lname'>Last Name</label>"+
+                          "<input type='text' class='form-control input-width2' id='lastName' required>"+
+                       "</div>" +
+
+                       "</div>" +
+                       "<div class='row justify-content-center mt-2 text-center g-3'>" +
+                       "<div class='col-md-6'> " +
+                         "<label for='email' class='form-label email'>Email</label>" +
+                         "<input type='email' class='form-control email-width' id='email' required>" +
+                       "</div>"+
+                      "</div>" +
+                      "<div class='row justify-content-center mt-2 text-center g-3'>" +
+                      "<div class='col-md-6'> " +
+                        "<label for='phone' class='form-label num'>Phone number</label>" +
+                        "<input type='number' class='form-control email-width' id='phone' required>" +
+                      "</div>"+
+                      "<p class='privacy-para'>Your privacy is important to us. Your information will not be shared with<br> outside parties. By clicking this button, you consent to be contacted by<br> Solar Energy World, LLC."+
+                     "</div>" +
+                     "<div class='row d-flex justify-content-center mt-3'>" +
+                     "<div class='col-sm-6 mx-3 btn-line'> " +
+                      "<button type='submit' class='btn main-btn' id='submit-btn'>Submit</button>" +
+                     "</div>" +
+                     "<div class='col-sm-6 mx-3 btn-line'> " +
+                      "<button class='btn btn-back' id='back-btn'>back</button>" +
+                     "</div>" +
+                     "</div>" +
+
+                        "</form>"
+                      );
+                    }
+                  });
+
+                });
+
+                  
+
+
+              });
+ 
+
+
+            });
+
+          }  
+
+          else {
+            $("#yesno-container").hide();
+            $("body").append(
+                "<div class='container mt-5 alert alert-success' role='alert'><h4 class='alert-heading'>Well done!</h4><p>Aww yeah, you successfully read this important alert message. This example text is going to run a bit longer so that you can see how spacing within an alert works with this kind of content.</p><p class='mb-0'>Whenever you need to, be sure to use margin utilities to keep things nice and tidy.</p></div>"
+                );
+          }
+
+        });
+          
+        
+        $("#continue-button2").click(function () {
+          $("#yesno-container").hide();
+        });
+
+        // back button funclaity 
+        // $("#back-button2").click(function () {
+        //   $("#yesno-container").hide();
+        //   $("#initial-container").show();
+        // });
+
+      // }, 2000);
+    });
+  });
+  
+
+
+    </script>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+  </body>
+</html>

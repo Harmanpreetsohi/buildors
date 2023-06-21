@@ -1,0 +1,206 @@
+*  {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  body{
+    /* background-color: rgb(176 189 207); */
+    background-color: black;
+  }
+
+ .main-title {
+   font-size: 1.3rem;
+   font-weight: 900;
+   /* font-family: BreuerText Medium; */
+   color: #fff;
+   line-height: 1.25;
+ }
+ .main-input {
+    width: 35%;
+    border-radius: 25px;
+    padding: 7px;
+ }
+ .zip-code {
+    font-size: 0.90rem;
+    font-weight: 400;
+    color: #fff;
+    font-family: BreuerText Regular;
+ }
+ .main-btn {
+    background-color: #f67e21;
+    padding: 12px 28px 12px 28px;
+    color: #fff;
+    border-radius: 43px;
+    text-transform: uppercase;
+    font-weight: 800;
+ }
+ .main-btn:hover {
+   background-color: #e76a09;
+   border-color: #db6509;
+   color: #fff;
+ }
+ .property-title {
+    font-size: 1.4rem;
+    font-weight: 800;
+    color: #fff;
+    line-height: 1.25;
+ }
+ .sel {
+    font-size: 0.85rem;
+    color: #fff;
+ }
+  /* remove radio icon and place checkbox instead  */
+  
+ .card1 {
+    width: 161px;
+    height: 130px;
+    background-color: #fffade;
+ }
+input[type='radio'] {
+   opacity: 0;
+ }
+ input[type="radio"]:checked + label {
+   background-color: rgb(58 47 47);
+ }
+ .card-width {
+   width: 18%;
+ }
+ .card1:hover {
+   border: 3px solid rgba(27,112,190,.75);
+    background-color: #fff;
+ }
+ .fa-check {
+    color: rgb(64, 64, 238);
+    font-size: 36px;
+ }
+ .yes {
+    font-size: 1.1rem;
+    color: #f67e21;
+ }
+ .fa-xmark {
+    color: rgb(64, 64, 238);
+    font-size: 36px;
+ }
+ .btn-line {
+    width:130px;
+ }
+ .btn-back {
+    color: #fff;
+    font-size: 1.3rem;
+    text-transform: uppercase;
+ }
+ .btn-back:hover{
+   color: #fff;
+   text-decoration: underline;
+ }
+ .property2-title {
+    font-size: 1.9rem;
+    font-weight: 900;
+    color: #fff;
+    line-height: 1.25;
+ }
+ .card2 {
+    width: 161px;
+    height: 140px;
+    background-color: #fffade;
+ }
+ .card2:hover {
+   border: 3px solid rgba(27,112,190,.75);
+    background-color: #fff;
+ }
+ .single, .town, .manfu {
+ color: #f67e21;
+ font-size: 1.1rem;
+ }
+ .purchase-title {
+    font-size: 1.6rem;
+    font-weight: 900;
+    color: #fff;
+    line-height: 1.25;
+ }
+ .card3 {
+    width: 204px;
+    height: 162px;
+    background-color: #fffade;
+ }
+ .lease {
+    color: #f67e21;
+    font-size: 1.2rem;
+    font-weight: 500;
+ }
+ .lease2 {
+    color: #f67e21;
+    font-size: 1.1rem;
+    font-weight: 700;
+ }
+ .bills-para {
+    color: #6c757d;
+    font-size: 0.80rem;
+ }
+ .bills-para2{
+    color: #6c757d;
+    font-size: 0.80rem;
+ }
+ .battery-title {
+    font-size: 1.5rem;
+    font-weight: 900;
+    color: #fff;
+    line-height: 1.25;
+ }
+ .fname,.lname,.email,.num {
+ color: #fff;
+ font-size: 1rem;
+ font-weight: 400;
+ }
+ .privacy-para {
+    color: #6c757d;
+    font-size: 0.80rem;
+    margin-top: 10px;
+ }
+ .card-inline1 {
+   width: 18%;
+ }
+ .card-inline2 {
+   width: 18%;
+ }
+ .card-inline3 {
+   width: 18%;
+ }
+ .card-inline4, .card-inline5, .card-inline6 {
+   width: 21%;
+ }
+ .years-title {
+   font-size: 1.2rem;
+   color: #db6509;
+   font-weight: 700;
+ }
+ .card4 {
+   width: 177px;
+    height: 126px;
+    background-color: #fffade
+ }
+ .card4:hover {
+   border: 3px solid rgba(27,112,190,.75);
+   background-color: #fff;
+ }
+ .card-width2 {
+   width: 20%;
+ }
+ .input-width {
+   width: 98%;
+   border-radius: 25px;
+ }
+ .input-width2 {
+   width: 57%;
+   border-radius: 25px;
+ }
+ .pl {
+   padding-left: 244px
+ }
+ .pl2 {
+   padding-left: 23px;
+ }
+ .email-width {
+   border-radius: 25px;
+ }
+  
