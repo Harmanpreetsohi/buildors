@@ -7,7 +7,7 @@
         <button class="btn btn-primary">View Page</button>
     </div>
 </div>
-<div class="card">
+<div class="card card_outer">
     <div class="card-body">
         <form>
             <div>

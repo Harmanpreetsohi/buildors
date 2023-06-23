@@ -68,6 +68,7 @@ input[type="file"] {
   .primaryImg_outer{
     border: 1px solid #e5e1e1;
     height: 191px;
+    flex-grow: 1;
   }
   .primary_img_inner_content {
     border: 1px dashed #cbc4c4;
@@ -86,4 +87,108 @@ input[type="file"] {
     font-size: 22px;
     padding-top: 11px;
 
+}
+/* property overview */
+.property_overview_inner_content {
+    display: flex;
+    justify-content: space-between;
+}
+.section_outer {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 30px;
+}
+.section_inner_content{
+    flex-grow: 1;
+   
+}
+.add_section_btn{
+    margin-top: 20px;
+}
+.add_item_outer{
+    border-bottom: 1px solid grey;
+    padding-bottom: 21px;
+    padding-top: 43px;
+}
+.upload_outer{
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    margin-top:30px
+}
+.upload_inner_content{
+    flex-grow: 1;
+}
+/* quote section  */
+.quote_switch_outer{
+    display: flex;
+    justify-content: space-between;
+}
+
+.section_total_btn_outer {
+    justify-content: space-between;
+    display: flex;
+    margin-top: 20px;
+}
+.section_total_btn_outer {
+    padding-bottom: 30px;
+}
+.quote_add_section_btn {
+    padding: 30px 10px;
+    border-top: 1px solid grey;
+    border-bottom: 1px solid grey;
+}
+.total_outer {
+    margin-top: 30px;
+    display: flex;
+    flex-direction: column;
+
+    
+}
+.notes_wrapper {
+    border-top: 1px solid grey;
+    border-bottom: 1px solid grey;
+    padding-bottom: 20px;
+}
+.text_area{
+width: 70%;
+height: 150px;
+}
+.textArea{
+    width: 100%;
+    
+}
+.item_content{
+    display:flex;
+    gap: 10px;
+}
+.plus_icon{
+    position: absolute;
+    left: auto;
+    right: 5px;
+    top: auto;
+    bottom: 15px;
+
+}
+.price_outer{
+    display: flex;
+    gap: 10px;
+}
+.textArea_outer{
+    position: relative;
+}
+.tex_checkbox{
+    margin-top: 40px;
+}
+@media screen and (max-width:767px){
+    .page_content_container{
+        display: block;
+        margin-top: 11px;
+    }
+    .text_container {
+        margin-top: 14px;
+    }
+    .card_outer{
+        margin-top: 12px;
+    }
 }
