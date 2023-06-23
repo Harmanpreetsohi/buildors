@@ -11,8 +11,8 @@
 	$role_data = mysqli_fetch_assoc($role_qry);
 	
 	$permission_qry = mysqli_query($link,"select * from permission where inner_user_id='$user_id' AND module_name='contacts' AND view_permission='1'");
-	
-	if(mysqli_num_rows($permission_qry)==1 || $role_data['role']=="Full Admin" || $user_type==1){
+
+	// if(mysqli_num_rows($permission_qry)==1 || $role_data['role']=="Full Admin" || $user_type==1){
 ?>
 <style>
 table>thead>tr>th {
@@ -37,7 +37,7 @@ var customers = [];
                     <div class="card-body">
                         <!-- tab -->
                         <div class="custom_wrapper">
-                            <ul class="nav nav-tabs" id="myTab" role="tablist">
+                            <ul class="nav nav-tabs" id="dynamicMenu" role="tablist">
                                 <li class="nav-item" role="presentation">
                                     <i class="fa fa-bars" aria-hidden="true"></i>
                                     <button class="nav-link active" id="text-tab" data-bs-toggle="tab"
@@ -87,8 +87,8 @@ var customers = [];
                                     <div class="add_page_btn_outer">
                                         <button class="nav-link add_page_btn btn" id="custom-tab" data-bs-toggle="tab"
                                             data-bs-target="#custom" type="button" role="tab" aria-controls="custom"
-                                            aria-selected="false"> <i class="fa fa-plus me-1" aria-hidden="true"></i>Add
-                                            Custom Page</button>
+                                            aria-selected="false"> <i class="fa fa-plus me-1" aria-hidden="true"></i>
+                                            Add Custom Page</button>
                                         <div>
 
                                 </li>
@@ -101,7 +101,7 @@ var customers = [];
                 </div>
             </div>
             <div class="col-xl-9 col-lg-8 col-md-6 col-sm-12">
-                <div class="tab-content" id="myTabContent">
+                <div class="tab-content" id="dynamicMenuContent">
                     <!-- text tab -->
                     <div class="tab-pane fade show active" id="text" role="tabpanel" aria-labelledby="text-tab">
                        
@@ -114,8 +114,16 @@ var customers = [];
 
                     <!-- custom button tab -->
                     <div class="tab-pane fade" id="custom" role="tabpanel" aria-labelledby="custom-tab">
-                            <?php include_once("elements/custom_options.php");?>
+                            <?php include_once("elements/custom_options.php");?>     
                         
+                    </div>
+					<!-- Property overview tab -->
+					<div class="tab-pane fade" id="property" role="tabpanel" aria-labelledby="property-tab">
+						<?php include_once("elements/custom_picture.php");?>
+                    </div>
+					<!-- Quote details -->
+					<div class="tab-pane fade" id="Quote" role="tabpanel" aria-labelledby="Quote-tab">
+						<?php include_once("elements/quoteDetails.php");?>
                     </div>
 					<!-- Property overview tab -->
 					<div class="tab-pane fade" id="property" role="tabpanel" aria-labelledby="property-tab">
@@ -131,68 +139,41 @@ var customers = [];
     </div>
 </div>
 <?php
-	}else{
+	// }else{
 	    
-	    echo "<h3 style='height: 250px;' class='mt-4'>Access Denied</h3>";
-	}
+	//     echo "<h3 style='height: 250px;' class='mt-4'>Access Denied</h3>";
+	// }
 ?>
 
 <?php include_once("footer.php"); ?>
-<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"
-    integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous">
-</script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"
-    integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous">
-</script>
-
-
 
 <script>
-function getSelectedCustomers(obj, customers) {
-    var contact = $(obj).val();
-    if ($(obj).is(":checked") == true) {
-        customers.push(contact);
-    } else {
-        var found = customers.indexOf(contact);
-        if (found > -1) {
-            customers.splice(found, 1);
-        }
-    }
-    var totalRecipients = customers.length;
-    if (totalRecipients > 0) {
-        $("#sendBroadcastButton").show();
-    } else {
-        $("#sendBroadcastButton").hide();
-    }
-    var json = JSON.stringify(customers);
-    $("#recipients").val(json);
-}
 
-function searchKeyword() {
-    var searchKeyword = $("#searchKeyword").val();
-    if ($.trim(searchKeyword) == '')
-        window.location = 'contacts.php';
-    else
-        window.location = 'contacts.php?search=' + searchKeyword;
-}
+$(document).on('submit','.menuForm',function(event){
+        event.preventDefault();
+    
+        var form = $(this);
+        
+                console.log(form.serialize());
+              
+                $.ajax({
+                    url: 'elements/add_custom_menu.php', 
+                    type: 'POST',
+                    data: form.serialize(),
+                    dataType: 'json',
+                    success: function(response) {
+                    if (response.success) {
+                        // Update the left menu
+                        var menuItem = $('<div>').text(response.menuName);
+                        $('#dynamicMenu').append(menuItem);
+                    }
+                    }
+                });
+            
+        // });
+    });
 
-function filterContacts(obj) {
-    var type = $(obj).val();
-    if ($.trim(type) == '')
-        window.location = 'contacts.php';
-    else
-        window.location = 'contacts.php?filter=' + type;
-}
 
-function confirDelete(staffID) {
-    if (confirm("Are you sure you wanto to delete this contact?")) {
-        $(".overlay").show();
-        $.post("server.php", {
-            "cmd": "delete_staff",
-            staffID: staffID
-        }, function() {
-            window.location = 'contacts.php';
-        });
-    }
-}
-</script>
+
+    </script>
+

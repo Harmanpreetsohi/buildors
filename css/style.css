@@ -33,7 +33,7 @@ background: #1f2937;
 margin-bottom: 10px;
 padding: 10px;
 }
-ul#myTab {
+ul#dynamicMenu {
     display: block;
 }
 .nav-tabs .nav-link {
