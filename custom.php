@@ -32,7 +32,7 @@ var customers = [];
 <div class="container">
     <div class="customPage_wrapper">
         <div class="row">
-            <div class="col-lg-4">
+            <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12  ">
                 <div class="card custom_sidebar">
                     <div class="card-body">
                         <!-- tab -->
@@ -70,6 +70,18 @@ var customers = [];
                                     </div>
 
                                 </li>
+								<li class="nav-item" role="presentation">
+								<i class="fa fa-bars" aria-hidden="true"></i>
+                                        <button class="nav-link  btn" id="Quote-tab" data-bs-toggle="tab"
+                                            data-bs-target="#Quote" type="button" role="tab" aria-controls="Quote"
+                                            aria-selected="false">
+                                            Quote Details</button>
+											<div class="form-check form-switch">
+                                        <input class="form-check-input" type="checkbox" role="switch"
+                                            id="flexSwitchCheckDefault">
+                                    </div>
+
+                                </li>
 
                                 <li class="nav-item" role="presentation">
                                     <div class="add_page_btn_outer">
@@ -88,7 +100,7 @@ var customers = [];
                     </div>
                 </div>
             </div>
-            <div class="col-lg-8">
+            <div class="col-xl-9 col-lg-8 col-md-6 col-sm-12">
                 <div class="tab-content" id="myTabContent">
                     <!-- text tab -->
                     <div class="tab-pane fade show active" id="text" role="tabpanel" aria-labelledby="text-tab">
@@ -108,6 +120,10 @@ var customers = [];
 					<!-- Property overview tab -->
 					<div class="tab-pane fade" id="property" role="tabpanel" aria-labelledby="property-tab">
 						<?php include_once("elements/custom_picture.php");?>
+                    </div>
+					<!-- Quote details -->
+					<div class="tab-pane fade" id="Quote" role="tabpanel" aria-labelledby="Quote-tab">
+						<?php include_once("elements/quoteDetails.php");?>
                     </div>
                 </div>
             </div>
