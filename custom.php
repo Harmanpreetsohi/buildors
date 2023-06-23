@@ -72,8 +72,8 @@ var customers = [];
                                 </li>
 								<li class="nav-item" role="presentation">
 								<i class="fa fa-bars" aria-hidden="true"></i>
-                                        <button class="nav-link  btn" id="Quote-tab" data-bs-toggle="tab"
-                                            data-bs-target="#Quote" type="button" role="tab" aria-controls="Quote"
+                                        <button class="nav-link  btn" id="quote-tab" data-bs-toggle="tab"
+                                            data-bs-target="#quote" type="button" role="tab" aria-controls="quote"
                                             aria-selected="false">
                                             Quote Details</button>
 											<div class="form-check form-switch">
@@ -122,17 +122,10 @@ var customers = [];
 						<?php include_once("elements/custom_picture.php");?>
                     </div>
 					<!-- Quote details -->
-					<div class="tab-pane fade" id="Quote" role="tabpanel" aria-labelledby="Quote-tab">
+					<div class="tab-pane fade" id="quote" role="tabpanel" aria-labelledby="quote-tab">
 						<?php include_once("elements/quoteDetails.php");?>
                     </div>
-					<!-- Property overview tab -->
-					<div class="tab-pane fade" id="property" role="tabpanel" aria-labelledby="property-tab">
-						<?php include_once("elements/custom_picture.php");?>
-                    </div>
-					<!-- Quote details -->
-					<div class="tab-pane fade" id="Quote" role="tabpanel" aria-labelledby="Quote-tab">
-						<?php include_once("elements/quoteDetails.php");?>
-                    </div>
+				
                 </div>
             </div>
         </div>
