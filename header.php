@@ -40,6 +40,7 @@
 	<link type="text/css" href="./vendor/choices.js/public/assets/styles/choices.min.css" rel="stylesheet">
 	<link type="text/css" href="./vendor/leaflet/dist/leaflet.css" rel="stylesheet">
 	<link type="text/css" href="./css/volt.css" rel="stylesheet">
+	<link type="text/css" href="./css/style.css" rel="stylesheet">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css">
 	
 	<style>

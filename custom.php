@@ -15,200 +15,279 @@
 	if(mysqli_num_rows($permission_qry)==1 || $role_data['role']=="Full Admin" || $user_type==1){
 ?>
 <style>
-	table > thead > tr > th{
-		text-align: center
-	}
-	table > tbody > tr > td{
-		text-align: center
-	}
+table>thead>tr>th {
+    text-align: center
+}
+
+table>tbody>tr>td {
+    text-align: center
+}
 </style>
 <script>
-	var customers = [];
+var customers = [];
 </script>
-	<div class="py-2">
-		<h3>
-			Contacts
-			<input type="button" value="Send Broadcast" style="float: right; display: none;margin-left: 8px;" class="btn btn-primary" id="sendBroadcastButton" data-bs-toggle="modal" data-bs-target="#BCModal">
-			<input type="button" value="Add New Contact" style="float: right;margin-left: 8px;" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addContactModal" />
-			<a href="server.php?cmd=download_contact_sample_csv_file" style="float: right; margin-left: 5px;" class="btn btn-primary">Download Sample CSV</a>
-			<input type="button" value="Upload Contacts" style="float: right;" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#uploadDCSub">
-		</h3>
-	</div>
-	<?php if(isset($_SESSION['message']))echo $_SESSION['message'];unset($_SESSION['message']); ?>
-	<div class="row" style="padding: 10px 0px">
-		<div class="col-md-7"></div>
-		<div class="col-md-2">
-			<a href="contacts.php" class="btn btn-primary" style="float: right">Clear Filter</a>
-		</div>
-		<div class="col-md-3">
-			<div class="input-group">
-				<input type="text" id="searchKeyword" class="form-control" placeholder="Search" aria-label="Search" value="<?php  isset($_REQUEST['search']) ? $_REQUEST['search'] : '' ?>" >
-				<span class="input-group-text" id="basic-addon2" style="cursor: pointer" onClick="searchKeyword()">
-					<svg class="icon icon-xs text-gray-600" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clip-rule="evenodd"></path></svg> 
-				</span>
-			</div>
-		</div>
-		<div class="col-md-2 d-none">
-			<div class="form-group">
-				<select name="filter" class="form-control" onChange="filterContacts(this)">
-					<option value="">- All Contacts -</option>
-					<option <?php if($_REQUEST['filter']=='staff')echo 'selected="selected"';?> value="staff">Staff</option>
-					<option <?php if($_REQUEST['filter']=='sub-con')echo 'selected="selected"';?> value="sub-con">DC Sub-Con</option>
-					<option <?php if($_REQUEST['filter']=='customer')echo 'selected="selected"';?> value="customer">Customers</option>
-				</select>
-			</div>
-		</div>
-	</div>
-	<div class="card">
-		<div class="table-responsive">
-			
-		</div>
-	</div>
-	<div class="modal fade" id="BCModal" tabindex="-1" role="dialog" aria-labelledby="modal-default" aria-hidden="true">
-		<div class="modal-dialog modal-dialog-centered" role="document">
-			<div class="modal-content">
-				<form action="server.php" method="post" onSubmit="return makeSure(this)" enctype="multipart/form-data">
-					<div class="modal-header">
-						<h2 class="h6 modal-title">Send Broadcast</h2>
-						<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-					</div>
-					<div class="modal-body">
-						<label>Message</label>
-						<label style="font-size: 12px;">Name = %name%</label>
-						<textarea name="broadcast_sms" class="form-control" style="height: 150px;" placeholder="Write your message here" required></textarea><br>
-						<label>Media</label>
-						<input type="file" name="broadcast_media">
-					</div>
-					<div class="modal-footer">
-						<input type="hidden" name="recipients" id="recipients">
-						<input type="hidden" name="cmd" value="send_broadcast_to_the_customers">
-						<input type="hidden" name="customers" id="customers" value="">
-						<button type="submit" class="btn btn-secondary">Send now</button>
-						<button type="button" class="btn btn-link text-gray ms-auto" data-bs-dismiss="modal">Close</button>
-					</div>
-				</form>
-			</div>
-		</div>
-	</div>
-	<div class="modal fade" id="uploadDCSub" tabindex="-1" role="dialog" aria-labelledby="modal-default" aria-hidden="true">
-		<div class="modal-dialog modal-dialog-centered" role="document">
-			<div class="modal-content">
-				<form action="server.php" method="post" enctype="multipart/form-data">
-					<div class="modal-header">
-						<h2 class="h6 modal-title">Upload Contacts</h2>
-						<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-					</div>
-					<div class="modal-body">
-					    <?php 
-            			    $permission_qry = mysqli_query($link,"select * from permission where inner_user_id='$user_id' AND module_name='contacts' AND insert_permission='1'");
-                        	if(mysqli_num_rows($permission_qry)==1 || $role_data['role']=="Full Admin" || $user_type==1){
-            			?>
-						<label>Select CSV File</label>
-						<input type="file" name="contacts" required>
-					</div>
-					<div class="modal-footer">
-						<input type="hidden" name="cmd" value="upload_contacts">
-						<input type="submit" value="Upload" class="btn btn-primary">
-						<button type="button" class="btn btn-link text-gray ms-auto" data-bs-dismiss="modal">Close</button>
-						<?php }else{ echo 'Access denied'; } ?>
-					</div>
-				</form>
-			</div>
-		</div>
-	</div>
-	<div class="modal fade" id="addContactModal" tabindex="-1" role="dialog" aria-labelledby="modal-default" aria-hidden="true">
-		<div class="modal-dialog modal-dialog-centered" role="document">
-			<div class="modal-content">
-				<form action="server.php" method="post">
-					<div class="modal-header">
-						<h2 class="h6 modal-title">Add New Contact</h2>
-						<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-					</div>
-					<div class="modal-body">
-					    <?php 
-                			    $permission_qry = mysqli_query($link,"select * from permission where inner_user_id='$user_id' AND module_name='contacts' AND insert_permission='1'");
-                            	if(mysqli_num_rows($permission_qry)==1 || $role_data['role']=="Full Admin" || $user_type==1){
-                		?>
-						<label class="mb-0 mt-2">First Name</label>
-						<input type="text" name="contact_fname" class="form-control" value="" placeholder="Contact First Name">
-						<label class="mb-0 mt-2">Last Name</label>
-						<input type="text" name="contact_lname" class="form-control" value="" placeholder="Contact Last Name">
-						<label class="mb-0 mt-2">Email</label>
-						<input type="text" name="contact_email" class="form-control" value="" placeholder="Email">
-						<label class="mb-0 mt-2">Company Name</label>
-						<input type="text" name="contact_company" class="form-control" value="" placeholder="Company Name">
-						<label class="mb-0 mt-2">Phone Number</label>
-						<input type="text" name="contact_phonenumber" class="form-control" value="" placeholder="Phone Number">
-						<label class="mb-0 mt-2">Designation/Division</label>
-						<input type="text" name="contact_designation" class="form-control" value="" placeholder="Designation/Division">
-						<label class="mb-0 mt-2">Type</label>
-						<input type="text" name="contact_type" class="form-control" value="" placeholder="Type">
-						<label class="mb-0 mt-2">Address</label>
-						<input type="text" name="contact_address" class="form-control" value="" placeholder="Address">
-						<label class="mb-0 mt-2">City</label>
-						<input type="text" name="contact_city" class="form-control" value="" placeholder="City">
-						<label class="mb-0 mt-2">State</label>
-						<input type="text" name="contact_state" class="form-control" value="" placeholder="State">
-						<label class="mb-0 mt-2">Zip Code</label>
-						<input type="text" name="contact_zipcode" class="form-control" value="" placeholder="Zip Code">
-					</div>
-					<div class="modal-footer">
-						<input type="hidden" name="cmd" value="add_contact">
-						<button type="submit" class="btn btn-secondary">Save</button>
-						<button type="button" class="btn btn-link text-gray ms-auto" data-bs-dismiss="modal">Close</button>
-						<?php }else{ echo 'Access denied'; } ?>
-					</div>
-				</form>
-			</div>
-		</div>
-	</div>
+<!-- ck editor--- -->
+
+
+<div class="container">
+    <div class="customPage_wrapper">
+        <div class="row">
+            <div class="col-lg-4">
+                <div class="card custom_sidebar">
+                    <div class="card-body">
+                        <!-- tab -->
+                        <div class="custom_wrapper">
+                            <ul class="nav nav-tabs" id="myTab" role="tablist">
+                                <li class="nav-item" role="presentation">
+                                    <i class="fa fa-bars" aria-hidden="true"></i>
+                                    <button class="nav-link active" id="text-tab" data-bs-toggle="tab"
+                                        data-bs-target="#text" type="button" role="tab" aria-controls="text"
+                                        aria-selected="true">Text</button>
+                                    <div class="form-check form-switch">
+                                        <input class="form-check-input" type="checkbox" role="switch"
+                                            id="flexSwitchCheckDefault">
+                                    </div>
+                                </li>
+                                <li class="nav-item" role="presentation">
+                                    <i class="fa fa-bars" aria-hidden="true"></i>
+                                    <button class="nav-link" id="title-tab" data-bs-toggle="tab" data-bs-target="#title"
+                                        type="button" role="tab" aria-controls="title"
+                                        aria-selected="false">Title</button>
+                                    <div class="form-check form-switch">
+                                        <input class="form-check-input" type="checkbox" role="switch"
+                                            id="flexSwitchCheckDefault">
+                                    </div>
+                                </li>
+                                <li class="nav-item" role="presentation">
+                                    <div class="add_page_btn_outer">
+                                        <button class="nav-link add_page_btn btn" id="custom-tab" data-bs-toggle="tab"
+                                            data-bs-target="#custom" type="button" role="tab" aria-controls="custom"
+                                            aria-selected="false"> <i class="fa fa-plus me-1" aria-hidden="true"></i>Add
+                                            Custom Page</button>
+                                        <div>
+
+                                </li>
+                            </ul>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-8">
+                <div class="tab-content" id="myTabContent">
+                    <!-- text tab -->
+                    <div class="tab-pane fade show active" id="text" role="tabpanel" aria-labelledby="text-tab">
+                        <div class="page_content_container">
+                            <div class="page_content_outer">
+                                <h6>Page content</h6>
+                                <h5>Introduction</h5>
+                            </div>
+                            <div class="btn_outer">
+                                <button class="btn btn-primary ">View Page</button>
+                            </div>
+                        </div>
+                        <div class="text_container">
+
+                            <textarea name="editor" id="editor"></textarea>
+
+                        </div>
+
+                    </div>
+                    <!-- title tab -->
+                    <div class="tab-pane fade" id="title" role="tabpanel" aria-labelledby="title-tab">
+                        <div class="page_content_container">
+                            <div class="page_content_outer">
+                                <h6>Page content</h6>
+                                <h5>Title</h5>
+                            </div>
+                            <div class="btn_outer">
+                                <button class="btn btn-primary">View Page</button>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div class="card-body">
+                                <form>
+                                    <div>
+                                        <label>Report Type</label>
+                                        <input type="text" class="form-control" />
+                                    </div>
+                                    <div>
+                                        <label>Date</label>
+                                        <input type="date" class="form-control" />
+                                    </div>
+                                    <div>
+                                        <h5>Primary Image<h5>
+                                                <div class="primaryImg_outer">
+                                                    <div class="primary_img_inner_content">
+                                                        <i class="fa fa-upload" aria-hidden="true"></i>
+                                                        <label for="primaryimg">Upload</label>
+                                                        <input type="file" id="primaryimg" class="form-control"
+                                                            name="upload" />
+                                                    </div>
+                                                </div>
+                                    </div>
+                                    <div>
+                                        <label>Certification/Secondary Logo</label>
+                                        <img src="assets/img/cartoonImg/cartoon.jpg" />
+                                    </div>
+                                    <div>
+                                        <label>First name</label>
+                                        <input type="text" class="form-control" />
+                                    </div>
+                                    <div>
+                                        <label>Last name</label>
+                                        <input type="text" class="form-control" />
+                                    </div>
+                                    <div>
+                                        <label>Address</label>
+                                        <input type="text" class="form-control" />
+                                    </div>
+                                    <div>
+                                        <label>City</label>
+                                        <input type="text" class="form-control" />
+                                    </div>
+                                    <div>
+                                        <label>State/Provience</label>
+                                        <input type="text" class="form-control" />
+                                    </div>
+                                    <div>
+                                        <label>Zip code/Postal code</label>
+                                        <input type="number" class="form-control" />
+                                    </div>
+                                    <form>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- custom button tab -->
+                    <div class="tab-pane fade" id="custom" role="tabpanel" aria-labelledby="custom-tab">
+                        <div class="page_content_container">
+                            <div class="page_content_outer">
+                                <h6>Page content</h6>
+                                <h3>Custom Page</h3>
+                            </div>
+                            <div class="btn_outer">
+                                <button class=" btn btn-primary delete_btn me-2">Delete</button>
+                                <button class="btn btn-primary ">View Page</button>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="text_wrapper">
+                                    <div>
+                                        <input type="radio" class="form-check-input" name="radio" />
+                                        <label>Text</label>
+                                    </div>
+                                    <button class="btn btn-primary">Add</button>
+                                </div>
+                                <div class="text_wrapper">
+                                    <div>
+                                        <input type="radio" class="form-check-input" name="radio" />
+                                        <label>Title</label>
+
+                                    </div>
+                                    <button class="btn btn-primary">Add</button>
+                                </div>
+                                <div class="text_wrapper">
+                                    <div>
+                                        <input type="radio" class="form-check-input" name="radio" />
+                                        <label>Picture</label>
+                                    </div>
+                                    <button class="btn btn-primary">Add</button>
+                                </div>
+                                <div class="text_wrapper">
+                                    <div>
+                                        <input type="radio" class="form-check-input" name="radio" />
+                                        <label>Pdf</label>
+
+                                    </div>
+                                    <button class="btn btn-primary">Add</button>
+                                </div>
+                                <div class="text_wrapper">
+                                    <div>
+                                        <input type="radio" class="form-check-input" name="radio" />
+                                        <label>Authorization</label>
+
+                                    </div>
+                                    <button class="btn btn-primary">Add</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 <?php
 	}else{
 	    
 	    echo "<h3 style='height: 250px;' class='mt-4'>Access Denied</h3>";
 	}
-?>	
+?>
+
 <?php include_once("footer.php"); ?>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"
+    integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous">
+</script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"
+    integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous">
+</script>
+<script src="ckeditor/ckeditor.js"></script>
 <script>
-	function getSelectedCustomers(obj,customers){
-		var contact = $(obj).val();
-		if($(obj).is(":checked") == true){
-			customers.push(contact);
-		}else{
-			var found = customers.indexOf(contact);
-			if(found > -1){
-				customers.splice(found, 1);
-			}
-		}
-		var totalRecipients =  customers.length;
-		if(totalRecipients > 0){
-			$("#sendBroadcastButton").show();	
-		}else{
-			$("#sendBroadcastButton").hide();
-		}
-		var json = JSON.stringify(customers);
-		$("#recipients").val(json);
-	}
-	function searchKeyword(){
-		var searchKeyword = $("#searchKeyword").val();
-		if($.trim(searchKeyword)=='')
-			window.location = 'contacts.php';
-		else
-			window.location = 'contacts.php?search='+searchKeyword;
-	}
-	function filterContacts(obj){
-		var type = $(obj).val();
-		if($.trim(type)=='')
-			window.location = 'contacts.php';
-		else
-			window.location = 'contacts.php?filter='+type;
-	}
-	function confirDelete(staffID){
-		if(confirm("Are you sure you wanto to delete this contact?")){
-			$(".overlay").show();
-			$.post("server.php",{"cmd":"delete_staff",staffID:staffID},function(){
-				window.location = 'contacts.php';
-			});
-		}
-	}
+window.onload = function() {
+    CKEDITOR.replace("editor");
+    var editor = CKEDITOR.instances.editor;
+    editor.setData("<h1>Custom Default Content</h1>");
+};
+</script>
+
+<script>
+function getSelectedCustomers(obj, customers) {
+    var contact = $(obj).val();
+    if ($(obj).is(":checked") == true) {
+        customers.push(contact);
+    } else {
+        var found = customers.indexOf(contact);
+        if (found > -1) {
+            customers.splice(found, 1);
+        }
+    }
+    var totalRecipients = customers.length;
+    if (totalRecipients > 0) {
+        $("#sendBroadcastButton").show();
+    } else {
+        $("#sendBroadcastButton").hide();
+    }
+    var json = JSON.stringify(customers);
+    $("#recipients").val(json);
+}
+
+function searchKeyword() {
+    var searchKeyword = $("#searchKeyword").val();
+    if ($.trim(searchKeyword) == '')
+        window.location = 'contacts.php';
+    else
+        window.location = 'contacts.php?search=' + searchKeyword;
+}
+
+function filterContacts(obj) {
+    var type = $(obj).val();
+    if ($.trim(type) == '')
+        window.location = 'contacts.php';
+    else
+        window.location = 'contacts.php?filter=' + type;
+}
+
+function confirDelete(staffID) {
+    if (confirm("Are you sure you wanto to delete this contact?")) {
+        $(".overlay").show();
+        $.post("server.php", {
+            "cmd": "delete_staff",
+            staffID: staffID
+        }, function() {
+            window.location = 'contacts.php';
+        });
+    }
+}
 </script>
