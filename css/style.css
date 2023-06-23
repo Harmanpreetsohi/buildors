@@ -180,6 +180,13 @@ height: 150px;
 .tex_checkbox{
     margin-top: 40px;
 }
+button#Quote1-tab {
+    padding: 10px;
+}
+button#Quote2-tab {
+    padding: 10px;
+}
+
 @media screen and (max-width:767px){
     .page_content_container{
         display: block;
