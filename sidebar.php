@@ -224,8 +224,7 @@
 						<span class="sidebar-text">Custom</span> 
 					</span>
 				</a>
-			</li>
-			
+			</li>	
 			<?php 
 				if($_SESSION['user_id']=='1'){}
 				else if($_SESSION['user_id']=='2'){}

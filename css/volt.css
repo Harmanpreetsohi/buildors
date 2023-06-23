@@ -28595,4 +28595,95 @@ html:not([dir=rtl]) .noUi-horizontal .noUi-handle {
 .datepicker-dropdown {
     z-index: 9999;
 }
+/* custom page css */
+.page_content_container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.custom_sidebar {
+    background: #1f2937;
+}
+/* .add_page_btn{
+    text-align: center;
+} */
+.add_page_btn_outer{
+    text-align: center;
+}
+button#contact-tab {
+    background: white;
+    padding: 10px;
+    color: grey;
+}
+.customPage_wrapper {
+    margin-top: 20px;
+}
+.text_wrapper{
+    padding-top: 10px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.custom_wrapper li{
+display: flex;
+align-items: center;
+background: #1f2937;
+margin-bottom: 10px;
+padding: 10px;
+}
+ul#myTab {
+    display: block;
+}
+.nav-tabs .nav-link {
+    padding: 0px;
+    flex-grow: 1;
+    background: transparent;
+    color: #fff;
+    text-align: left;
+    padding-left: 10px;
+}
+.btn_list{
+    justify-content: space-between;
+    margin-top: 10px;
+}
+
+/* text page design */
+.text_container{
+    background-color: #ffffff;
+    background-clip: border-box;
+    border: 0.0625rem solid rgba(17, 24, 39, 0.125);
+    padding: 25px;
+    border-radius: 4px;
+}
+
+/* title page */
+input[type="file"] {
+    display: none;
+  }
+  input[type="file"] {
+    display: none;
+  }
+  .primaryImg_outer{
+    border: 1px solid #e5e1e1;
+    height: 191px;
+  }
+  .primary_img_inner_content {
+    border: 1px dashed #cbc4c4;
+    margin: 20px;
+    height: 155px;
+    text-align: center;
+    padding-top: 3rem;
+    flex-direction: column;
+    display: flex;
+}
+.editor{
+    height: 300px;
+    width: 100%;
+}
+.delete{
+    font-size: 22px;
+    padding-top: 11px;
+
+}
+  
 /*# sourceMappingURL=volt.css.map */
