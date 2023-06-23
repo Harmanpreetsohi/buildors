@@ -58,6 +58,19 @@ var customers = [];
                                             id="flexSwitchCheckDefault">
                                     </div>
                                 </li>
+								<li class="nav-item" role="presentation">
+								<i class="fa fa-bars" aria-hidden="true"></i>
+                                        <button class="nav-link  btn" id="property-tab" data-bs-toggle="tab"
+                                            data-bs-target="#property" type="button" role="tab" aria-controls="property"
+                                            aria-selected="false">Add
+                                            Property Overview</button>
+											<div class="form-check form-switch">
+                                        <input class="form-check-input" type="checkbox" role="switch"
+                                            id="flexSwitchCheckDefault">
+                                    </div>
+
+                                </li>
+
                                 <li class="nav-item" role="presentation">
                                     <div class="add_page_btn_outer">
                                         <button class="nav-link add_page_btn btn" id="custom-tab" data-bs-toggle="tab"
@@ -67,6 +80,8 @@ var customers = [];
                                         <div>
 
                                 </li>
+								
+
                             </ul>
                         </div>
 
@@ -214,6 +229,70 @@ var customers = [];
                             </div>
                         </div>
                     </div>
+					<!-- Property overview tab -->
+					<div class="tab-pane fade" id="property" role="tabpanel" aria-labelledby="property-tab">
+                        <div class="page_content_container">
+                            <div class="page_content_outer">
+                                <h6>Page content</h6>
+                                <h3>Property Overview</h3>
+                            </div>
+                            <div class="btn_outer">
+                                
+                                <button class="btn btn-primary ">View Page</button>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="property_wrapper">
+                                    <div class="property_overview_inner_content">
+                                        <h5>Property Overview</h5>
+										<i class="fa fa-trash-o" aria-hidden="true"></i>
+                                        
+                                    </div>
+									<div>
+										<button class="btn btn-primary">Add Item</button>
+
+									</div>
+									<div class="section_outer">
+										<div class="section_inner_content">
+											<label>Section title</label>
+											<input type="text" value="" placeholder="Condition Report" class="form-control"/>
+
+										</div>
+										
+										<i class="fa fa-trash-o" aria-hidden="true"></i>
+										
+									</div>
+									<!-- uplaod -->
+									<div class="row">
+										<div class="xl-6 col-lg-6 col-md-12 col-sm-12">
+                                        <div class="upload_outer">
+											<div>
+												<i class="fa fa-bars" aria-hidden="true"></i>   
+													<div class="primaryImg_outer">
+														<div class="primary_img_inner_content">
+															<i class="fa fa-upload" aria-hidden="true"></i>
+															<label for="primaryimg">Upload</label>
+															<input type="file" id="primaryimg" class="form-control"
+																name="upload" />
+														</div>
+													</div>
+											</div>
+												<i class="fa fa-trash-o" aria-hidden="true"></i>
+													
+                                    </div>
+									<div>
+									<textarea name="textEditor" id="textEditor"></textarea>
+                                    </div>
+										</div>
+										<div class="xl-6 col-lg-6 col-md-12 col-sm-12"></div>
+									</div>
+									
+                                </div>
+                               
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -239,7 +318,10 @@ window.onload = function() {
     CKEDITOR.replace("editor");
     var editor = CKEDITOR.instances.editor;
     editor.setData("<h1>Custom Default Content</h1>");
+	CKEDITOR.replace("textEditor");
 };
+
+
 </script>
 
 <script>

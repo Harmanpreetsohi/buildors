@@ -87,3 +87,15 @@ input[type="file"] {
     padding-top: 11px;
 
 }
+/* property overview */
+.property_overview_inner_content {
+    display: flex;
+    justify-content: space-between;
+}
+.section_outer {
+    display: flex;
+    justify-content: space-between;
+}
+.section_inner_content{
+    flex-grow: 1;
+}
