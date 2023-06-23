@@ -215,6 +215,16 @@
 					</span>
 				</a>
 			</li>
+			<li class="nav-item <?php if($pageName=='custom.php')echo 'active';?>"> 
+				<a href="custom.php" class="nav-link d-flex align-items-center justify-content-between"> 
+					<span> 
+						<span class="sidebar-icon">
+							<i class="icon icon-xs me-2 fa fa-users" style="margin-left: 2px"></i>
+						</span> 
+						<span class="sidebar-text">Custom</span> 
+					</span>
+				</a>
+			</li>
 			
 			<?php 
 				if($_SESSION['user_id']=='1'){}
