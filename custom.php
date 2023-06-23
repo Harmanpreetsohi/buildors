@@ -92,206 +92,22 @@ var customers = [];
                 <div class="tab-content" id="myTabContent">
                     <!-- text tab -->
                     <div class="tab-pane fade show active" id="text" role="tabpanel" aria-labelledby="text-tab">
-                        <div class="page_content_container">
-                            <div class="page_content_outer">
-                                <h6>Page content</h6>
-                                <h5>Introduction</h5>
-                            </div>
-                            <div class="btn_outer">
-                                <button class="btn btn-primary ">View Page</button>
-                            </div>
-                        </div>
-                        <div class="text_container">
-
-                            <textarea name="editor" id="editor"></textarea>
-
-                        </div>
-
+                       
+                         <?php include_once("elements/custom_text.php");?>
                     </div>
                     <!-- title tab -->
                     <div class="tab-pane fade" id="title" role="tabpanel" aria-labelledby="title-tab">
-                        <div class="page_content_container">
-                            <div class="page_content_outer">
-                                <h6>Page content</h6>
-                                <h5>Title</h5>
-                            </div>
-                            <div class="btn_outer">
-                                <button class="btn btn-primary">View Page</button>
-                            </div>
-                        </div>
-                        <div class="card">
-                            <div class="card-body">
-                                <form>
-                                    <div>
-                                        <label>Report Type</label>
-                                        <input type="text" class="form-control" />
-                                    </div>
-                                    <div>
-                                        <label>Date</label>
-                                        <input type="date" class="form-control" />
-                                    </div>
-                                    <div>
-                                        <h5>Primary Image<h5>
-                                                <div class="primaryImg_outer">
-                                                    <div class="primary_img_inner_content">
-                                                        <i class="fa fa-upload" aria-hidden="true"></i>
-                                                        <label for="primaryimg">Upload</label>
-                                                        <input type="file" id="primaryimg" class="form-control"
-                                                            name="upload" />
-                                                    </div>
-                                                </div>
-                                    </div>
-                                    <div>
-                                        <label>Certification/Secondary Logo</label>
-                                        <img src="assets/img/cartoonImg/cartoon.jpg" />
-                                    </div>
-                                    <div>
-                                        <label>First name</label>
-                                        <input type="text" class="form-control" />
-                                    </div>
-                                    <div>
-                                        <label>Last name</label>
-                                        <input type="text" class="form-control" />
-                                    </div>
-                                    <div>
-                                        <label>Address</label>
-                                        <input type="text" class="form-control" />
-                                    </div>
-                                    <div>
-                                        <label>City</label>
-                                        <input type="text" class="form-control" />
-                                    </div>
-                                    <div>
-                                        <label>State/Provience</label>
-                                        <input type="text" class="form-control" />
-                                    </div>
-                                    <div>
-                                        <label>Zip code/Postal code</label>
-                                        <input type="number" class="form-control" />
-                                    </div>
-                                    <form>
-                            </div>
-                        </div>
+                        <?php include_once("elements/custom_title.php");?>
                     </div>
 
                     <!-- custom button tab -->
                     <div class="tab-pane fade" id="custom" role="tabpanel" aria-labelledby="custom-tab">
-                        <div class="page_content_container">
-                            <div class="page_content_outer">
-                                <h6>Page content</h6>
-                                <h3>Custom Page</h3>
-                            </div>
-                            <div class="btn_outer">
-                                <button class=" btn btn-primary delete_btn me-2">Delete</button>
-                                <button class="btn btn-primary ">View Page</button>
-                            </div>
-                        </div>
-                        <div class="card">
-                            <div class="card-body">
-                                <div class="text_wrapper">
-                                    <div>
-                                        <input type="radio" class="form-check-input" name="radio" />
-                                        <label>Text</label>
-                                    </div>
-                                    <button class="btn btn-primary">Add</button>
-                                </div>
-                                <div class="text_wrapper">
-                                    <div>
-                                        <input type="radio" class="form-check-input" name="radio" />
-                                        <label>Title</label>
-
-                                    </div>
-                                    <button class="btn btn-primary">Add</button>
-                                </div>
-                                <div class="text_wrapper">
-                                    <div>
-                                        <input type="radio" class="form-check-input" name="radio" />
-                                        <label>Picture</label>
-                                    </div>
-                                    <button class="btn btn-primary">Add</button>
-                                </div>
-                                <div class="text_wrapper">
-                                    <div>
-                                        <input type="radio" class="form-check-input" name="radio" />
-                                        <label>Pdf</label>
-
-                                    </div>
-                                    <button class="btn btn-primary">Add</button>
-                                </div>
-                                <div class="text_wrapper">
-                                    <div>
-                                        <input type="radio" class="form-check-input" name="radio" />
-                                        <label>Authorization</label>
-
-                                    </div>
-                                    <button class="btn btn-primary">Add</button>
-                                </div>
-                            </div>
-                        </div>
+                            <?php include_once("elements/custom_options.php");?>
+                        
                     </div>
 					<!-- Property overview tab -->
 					<div class="tab-pane fade" id="property" role="tabpanel" aria-labelledby="property-tab">
-                        <div class="page_content_container">
-                            <div class="page_content_outer">
-                                <h6>Page content</h6>
-                                <h3>Property Overview</h3>
-                            </div>
-                            <div class="btn_outer">
-                                
-                                <button class="btn btn-primary ">View Page</button>
-                            </div>
-                        </div>
-                        <div class="card">
-                            <div class="card-body">
-                                <div class="property_wrapper">
-                                    <div class="property_overview_inner_content">
-                                        <h5>Property Overview</h5>
-										<i class="fa fa-trash-o" aria-hidden="true"></i>
-                                        
-                                    </div>
-									<div>
-										<button class="btn btn-primary">Add Item</button>
-
-									</div>
-									<div class="section_outer">
-										<div class="section_inner_content">
-											<label>Section title</label>
-											<input type="text" value="" placeholder="Condition Report" class="form-control"/>
-
-										</div>
-										
-										<i class="fa fa-trash-o" aria-hidden="true"></i>
-										
-									</div>
-									<!-- uplaod -->
-									<div class="row">
-										<div class="xl-6 col-lg-6 col-md-12 col-sm-12">
-                                        <div class="upload_outer">
-											<div>
-												<i class="fa fa-bars" aria-hidden="true"></i>   
-													<div class="primaryImg_outer">
-														<div class="primary_img_inner_content">
-															<i class="fa fa-upload" aria-hidden="true"></i>
-															<label for="primaryimg">Upload</label>
-															<input type="file" id="primaryimg" class="form-control"
-																name="upload" />
-														</div>
-													</div>
-											</div>
-												<i class="fa fa-trash-o" aria-hidden="true"></i>
-													
-                                    </div>
-									<div>
-									<textarea name="textEditor" id="textEditor"></textarea>
-                                    </div>
-										</div>
-										<div class="xl-6 col-lg-6 col-md-12 col-sm-12"></div>
-									</div>
-									
-                                </div>
-                               
-                            </div>
-                        </div>
+						<?php include_once("elements/custom_picture.php");?>
                     </div>
                 </div>
             </div>
@@ -312,17 +128,8 @@ var customers = [];
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"
     integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous">
 </script>
-<script src="ckeditor/ckeditor.js"></script>
-<script>
-window.onload = function() {
-    CKEDITOR.replace("editor");
-    var editor = CKEDITOR.instances.editor;
-    editor.setData("<h1>Custom Default Content</h1>");
-	CKEDITOR.replace("textEditor");
-};
 
 
-</script>
 
 <script>
 function getSelectedCustomers(obj, customers) {
